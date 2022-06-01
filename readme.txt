@@ -32,30 +32,6 @@ Response body (JSON): {}
 Status: 200
 
 
-Add a POST route that can add additional senators in the existing format to the backend with support for the above routes.
-A POST request to http://localhost:3000/senators with body 
-{
-	"firstName": "spongebob",
-	"lastName": "squarepants",
-	"state": "DB",
-	"party": "independent",
-	"nickname": "spongey",
-	"phone": "555-555-1111",
-	"website": "https://www.squarepants.senate.gov" ,
-} 
-returns:
-Response body: None
-Status: 201
-
-Error Response:
-
-If the senator already exists:
-Response body (JSON):
-{
-	"error": "Senator already exists"
-}
-Status: 400
-
 Add a PUT route that can update existing senators.
 A PUT request to http://localhost:3000/senators with body 
 {
