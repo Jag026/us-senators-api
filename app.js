@@ -15,13 +15,7 @@ app.use(helmet({
 }));
 
 // Set the _csrf token and create req.csrfToken method
-app.use(
-    csurf({
-        cookie: {
-            httpOnly: true,
-        },
-    })
-);
+//app.use(csurf());
 
 app.use(routes);
 
