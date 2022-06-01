@@ -1,5 +1,5 @@
 Build a get route that returns the first and last names of all senators
-A GET request to http://localhost:3000/recipes returns:
+A GET request to http://localhost:3000/api/senators returns:
 Response body (JSON):
 {
 	"usSenators":
