@@ -15,22 +15,39 @@ router.get('/senators', asyncHandler(async (req, res) => {
     res.json({ "usSenators": usSenators });
 }));
 
+//older details route
+// router.get('/senators/details/:name', asyncHandler(async (req, res) => {
+//     const name = req.params.name;
+//     const senatorDetails = {};
+//     senators['objects'].forEach(senator => {
+//         if (senator['person']['firstname'].toLocaleLowerCase() + senator['person']['lastname'] === name) {
+//             senatorDetails['description'] = senator['description'];
+//             senatorDetails['extra'] = senator['extra'];
+//             senatorDetails['state'] = senator['state'];
+//             senatorDetails['party'] = senator['party'];
+//             senatorDetails['nickname'] = senator['person']['nickname'];
+//             senatorDetails['phone'] = senator['phone'];
+//             senatorDetails['website'] = senator['website'];
+//             res.json({ 'details': senatorDetails });
+//         }
+//     })
+//     res.json({});
+// }));
+
 router.get('/senators/details/:name', asyncHandler(async (req, res) => {
     const name = req.params.name;
     const senatorDetails = {};
     senators['objects'].forEach(senator => {
         if (senator['person']['firstname'].toLocaleLowerCase() + senator['person']['lastname'] === name) {
-            senatorDetails['state'] = senator['state'];
-            senatorDetails['party'] = senator['party'];
-            senatorDetails['nickname'] = senator['person']['nickname'];
-            senatorDetails['phone'] = senator['phone'];
-            senatorDetails['website'] = senator['website'];
+            for (const property in senator) {
+                senatorDetails[property] = senator[property];
+            }
+            console.log(senatorDetails)
             res.json({ 'details': senatorDetails });
         }
     })
     res.json({});
 }));
-
 
 //tests router
 router.post('/test', function (req, res) {
