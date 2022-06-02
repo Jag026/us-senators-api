@@ -58,4 +58,17 @@ router.get('/states/:state', asyncHandler(async (req, res) => {
     res.json( senatorsByState );
 }));
 
+router.get('/party/:party', asyncHandler(async (req, res) => {
+    const party = req.params.party[0].toUpperCase() + req.params.party.slice(1, -1);
+    console.log(party);
+    const senatorsByParty = [];
+
+    senators['objects'].forEach(senator => {
+        if (senator['party'] === party) {
+            senatorsByParty.push(senator['person']['firstname'] + ' ' + senator['person']['lastname'] + `(${senator['state']})`);
+        }
+    })
+    res.json(senatorsByParty);
+}));
+
 module.exports = router;
