@@ -46,17 +46,16 @@ router.get('/senators/:name/:attribute', asyncHandler(async (req, res) => {
     res.json({});
 }));
 
-router.get('/senators/:state', asyncHandler(async (req, res) => {
+router.get('/states/:state', asyncHandler(async (req, res) => {
     const state = req.params.state;
-    console.log('hello')
     const senatorsByState = [];
 
     senators['objects'].forEach(senator => {
         if (senator['state'] === state.toUpperCase()) {
-            senatorsByState.push(senator[firstname.capitalize()] + ' ' + senator[lastname.capitalize()]); 
+            senatorsByState.push(senator['person']['firstname'] + ' ' + senator['person']['lastname']); 
         }
     })
-    res.json({ senatorsByState });
+    res.json( senatorsByState );
 }));
 
 module.exports = router;
