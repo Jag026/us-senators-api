@@ -18,6 +18,8 @@ router.get('/senators', asyncHandler(async (req, res) => {
 router.get('/senators/:name', asyncHandler(async (req, res) => {
     const name = req.params.name;
     const senatorDetails = {};
+    let exists = false;
+
     senators['objects'].forEach(senator => {
         if (senator['person']['firstname'].toLocaleLowerCase() + senator['person']['lastname'] === name) {
             for (const property in senator) {
@@ -26,24 +28,29 @@ router.get('/senators/:name', asyncHandler(async (req, res) => {
             res.json({ 'details': senatorDetails });
         }
     })
-    res.json({});
+    if (exists === false) {
+        res.json({});
+    }
 }));
 
-router.get('/senators/:name/:attribute', asyncHandler(async (req, res) => {
+router.get('/senators/:name/:attribute', asyncHandler(async (req, res, err) => {
     const name = req.params.name;
     const senatorDetails = {};
     const attribute = req.params.attribute;
+    let exists = false;
 
     senators['objects'].forEach(senator => {
         if (senator['person']['firstname'].toLocaleLowerCase() + senator['person']['lastname'] === name) {
             for (const property in senator) {
                 senatorDetails[property] = senator[property];
+                exists = true;
             }
-            console.log(senatorDetails[attribute])
             res.json(senatorDetails[attribute]);
         }
     })
-    res.json({});
+    if (exists === false) {
+        res.json({});
+    }
 }));
 
 router.get('/states/:state', asyncHandler(async (req, res) => {
