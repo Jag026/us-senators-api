@@ -1,4 +1,4 @@
-#The US-Senators-API is a suite of JSON endpoints that returns publicly available data about United States Senators.
+The US-Senators-API is a suite of JSON endpoints that returns publicly available data about United States Senators.
 
 Endpoints:
 /api/senators A GET request returns response body (JSON) of all US Senators:
