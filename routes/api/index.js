@@ -1,6 +1,5 @@
 const express = require('express');
 const asyncHandler = require('express-async-handler');
-const fs = require('fs');
 const senators = require('../../senators.json');
 
 const router = express.Router();
@@ -67,7 +66,6 @@ router.get('/states/:state', asyncHandler(async (req, res) => {
 
 router.get('/party/:party', asyncHandler(async (req, res) => {
     const party = req.params.party[0].toUpperCase() + req.params.party.slice(1, -1);
-    console.log(party);
     const senatorsByParty = [];
 
     senators['objects'].forEach(senator => {
